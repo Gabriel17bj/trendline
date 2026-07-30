@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { PenTool, Sparkles, HelpCircle, Lightbulb, MessageSquareQuote, CheckCircle2 } from 'lucide-react';
+import { PenTool, Sparkles, HelpCircle, Lightbulb, MessageSquareQuote, Key, ShieldCheck } from 'lucide-react';
 import { ReflectionData, RegressionResult, StudentInfo } from '../types';
 
 interface ReflectionSectionProps {
@@ -11,6 +11,8 @@ interface ReflectionSectionProps {
   xUnit: string;
   yName: string;
   yUnit: string;
+  userApiKey: string;
+  onOpenApiKeyModal: () => void;
 }
 
 export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
@@ -22,6 +24,8 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
   xUnit,
   yName,
   yUnit,
+  userApiKey,
+  onOpenApiKeyModal,
 }) => {
   const [aiLoading, setAiLoading] = useState<boolean>(false);
   const [aiFeedback, setAiFeedback] = useState<string | null>(null);
@@ -58,6 +62,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
+          userApiKey: userApiKey || undefined,
           topic: studentInfo.topic,
           xName,
           yName,
@@ -83,7 +88,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 shadow-sm p-5 sm:p-6 space-y-6">
-      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-4">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-4">
         <div className="flex items-center space-x-2">
           <div className="p-2 bg-indigo-100 text-indigo-700 rounded-xl">
             <PenTool className="w-5 h-5" />
@@ -98,14 +103,24 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Key status indicator button */}
+          <button
+            onClick={onOpenApiKeyModal}
+            className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-medium px-2.5 py-1.5 rounded-xl transition border border-slate-200"
+            title="Gemini API 키 변경/설정"
+          >
+            <Key className={`w-3.5 h-3.5 ${userApiKey ? 'text-indigo-600' : 'text-amber-500'}`} />
+            <span>{userApiKey ? '개인 API 키 적용중' : '무료 API 키 사용중'}</span>
+          </button>
+
           <button
             onClick={handleAutoFillGuide}
-            className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition"
+            className="flex items-center space-x-1.5 bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold px-3 py-1.5 rounded-xl transition border border-slate-200"
             title="초기 작성용 가이드 문장 채우기"
           >
             <Lightbulb className="w-3.5 h-3.5 text-amber-500" />
-            <span>가이드문 예시 적용</span>
+            <span>가이드문 예시</span>
           </button>
 
           <button

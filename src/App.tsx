@@ -16,8 +16,10 @@ import { PredictionTool } from './components/PredictionTool';
 import { ReflectionSection } from './components/ReflectionSection';
 import { ReportModal } from './components/ReportModal';
 import { PresetsModal } from './components/PresetsModal';
+import { ApiKeyModal } from './components/ApiKeyModal';
 
 const LOCAL_STORAGE_KEY = 'highschool_trendline_app_state';
+const API_KEY_STORAGE_KEY = 'gemini_user_api_key';
 
 export default function App() {
   // Default Initial Dataset: Hooke's Law
@@ -60,14 +62,21 @@ export default function App() {
 
   const [activePrediction, setActivePrediction] = useState<PredictionResult | null>(null);
 
+  // Gemini API Key State
+  const [userApiKey, setUserApiKey] = useState<string>('');
+
   // Modals
   const [isStudentModalOpen, setIsStudentModalOpen] = useState<boolean>(false);
   const [isPresetsModalOpen, setIsPresetsModalOpen] = useState<boolean>(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState<boolean>(false);
+  const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
 
   // Auto Restore / Save Local Storage
   useEffect(() => {
     try {
+      const savedKey = localStorage.getItem(API_KEY_STORAGE_KEY);
+      if (savedKey) setUserApiKey(savedKey);
+
       const saved = localStorage.getItem(LOCAL_STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
@@ -84,6 +93,15 @@ export default function App() {
       console.error('Failed to load local storage:', e);
     }
   }, []);
+
+  const handleSaveApiKey = (key: string) => {
+    setUserApiKey(key);
+    if (key) {
+      localStorage.setItem(API_KEY_STORAGE_KEY, key);
+    } else {
+      localStorage.removeItem(API_KEY_STORAGE_KEY);
+    }
+  };
 
   useEffect(() => {
     try {
@@ -193,8 +211,10 @@ export default function App() {
       {/* Header Bar */}
       <Header
         studentInfo={studentInfo}
+        userApiKey={userApiKey}
         onOpenStudentModal={() => setIsStudentModalOpen(true)}
         onOpenPresetsModal={() => setIsPresetsModalOpen(true)}
+        onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
         onExportReport={() => setIsReportModalOpen(true)}
         onSaveProject={handleSaveProject}
         onLoadProject={handleLoadProject}
@@ -267,6 +287,8 @@ export default function App() {
           xUnit={xUnit}
           yName={yName}
           yUnit={yUnit}
+          userApiKey={userApiKey}
+          onOpenApiKeyModal={() => setIsApiKeyModalOpen(true)}
         />
       </main>
 
@@ -289,6 +311,15 @@ export default function App() {
         />
       )}
 
+      {/* Gemini API Key Modal */}
+      {isApiKeyModalOpen && (
+        <ApiKeyModal
+          apiKey={userApiKey}
+          onSaveApiKey={handleSaveApiKey}
+          onClose={() => setIsApiKeyModalOpen(false)}
+        />
+      )}
+
       {/* Printable / Report Modal with PDF Export */}
       {isReportModalOpen && (
         <ReportModal
@@ -306,8 +337,13 @@ export default function App() {
       )}
 
       {/* Simple Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        <p>고교 데이터 추세선 분석기 &copy; 2026 — 학생 탐구활동 및 선형회귀 학습 보고서 생성기</p>
+      <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 space-y-1">
+        <p className="font-medium text-slate-700">
+          고교 데이터 추세선 분석기 &copy; 2026 — 학생 탐구활동 및 선형회귀 학습 보고서 생성기
+        </p>
+        <p className="text-indigo-600 font-semibold">
+          Developer: Gabriel Math (Gabriel Byeongje Jeon)
+        </p>
       </footer>
     </div>
   );

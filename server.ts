@@ -20,14 +20,16 @@ async function startServer() {
   // Gemini AI Feedback route for high school students
   app.post("/api/ai-feedback", async (req, res) => {
     try {
-      const apiKey = process.env.GEMINI_API_KEY;
+      const { userApiKey, topic, xName, yName, equationText, rSquared, slopeMeaning, interceptMeaning, conclusion } = req.body;
+
+      // Use user-provided API key if available, otherwise fall back to environment variable
+      const apiKey = userApiKey?.trim() || process.env.GEMINI_API_KEY;
+
       if (!apiKey) {
         return res.status(400).json({
-          error: "GEMINI_API_KEY 환경 변수가 설정되지 않았습니다.",
+          error: "Gemini API 키가 설정되지 않았습니다. 사용자 API 키를 입력하거나 환경 변수를 확인해 주세요.",
         });
       }
-
-      const { topic, xName, yName, equationText, rSquared, slopeMeaning, interceptMeaning, conclusion } = req.body;
 
       const ai = new GoogleGenAI({ apiKey });
 
