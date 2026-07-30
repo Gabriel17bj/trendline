@@ -74,6 +74,22 @@
         "eligible": false,
         "unmet": []
       }
+    },
+    {
+      "n": 5,
+      "at": "2026-07-30T02:15:02.240Z",
+      "security": {
+        "score": 77,
+        "grade": "C+",
+        "eligible": false,
+        "blocking": [
+          "sec.header.csp"
+        ]
+      },
+      "edzip": {
+        "eligible": true,
+        "unmet": []
+      }
     }
   ],
   "items": {
@@ -84,9 +100,9 @@
       "regressed": false
     },
     "sec.header.hsts": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "sec.header.frame": {
@@ -120,9 +136,9 @@
       "regressed": false
     },
     "sec.transport.https-redirect": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "sec.transport.ssl-valid": {
@@ -174,7 +190,7 @@
       "regressed": false
     },
     "cors.policy": {
-      "status": "pass",
+      "status": "info",
       "firstFailRound": null,
       "fixedRound": null,
       "regressed": false
@@ -186,21 +202,21 @@
       "regressed": false
     },
     "seo.description": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "seo.viewport": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "seo.og": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "seo.canonical": {
@@ -222,15 +238,15 @@
       "regressed": false
     },
     "perf.compression": {
-      "status": "info",
+      "status": "pass",
       "firstFailRound": null,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "legal.privacy-policy": {
-      "status": "fail",
+      "status": "pass",
       "firstFailRound": 1,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "legal.terms": {
@@ -258,9 +274,9 @@
       "regressed": false
     },
     "code.endpoint.unauth": {
-      "status": "na",
+      "status": "pass",
       "firstFailRound": null,
-      "fixedRound": null,
+      "fixedRound": 5,
       "regressed": false
     },
     "code.hardcoded-secret": {
@@ -343,8 +359,8 @@
     }
   },
   "passed": {
-    "security": true,
-    "edzip": false
+    "security": false,
+    "edzip": true
   },
   "submitted": {}
 }
