@@ -74,7 +74,15 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
         }),
       });
 
-      const data = await res.json();
+      const contentType = res.headers.get('content-type');
+      let data: any = {};
+      if (contentType && contentType.includes('application/json')) {
+        data = await res.json();
+      } else {
+        const rawText = await res.text();
+        throw new Error(`서버 응답 오류 (${res.status}): ${rawText.substring(0, 120)}`);
+      }
+
       if (!res.ok) {
         throw new Error(data.error || 'AI 피드백 요청에 실패했습니다.');
       }
@@ -111,7 +119,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
             title="Gemini API 키 변경/설정"
           >
             <Key className={`w-3.5 h-3.5 ${userApiKey ? 'text-indigo-600' : 'text-amber-500'}`} />
-            <span>{userApiKey ? '개인 API 키 적용중' : '무료 API 키 사용중'}</span>
+            <span>{userApiKey ? '개인 API 키 적용중' : 'API 입력하기'}</span>
           </button>
 
           <button
