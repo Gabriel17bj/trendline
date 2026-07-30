@@ -148,7 +148,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
         <div>
           <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center justify-between">
             <span>
-              1. 기울기($a = {regression ? regression.coefficients.a.toFixed(3) : 'a'}$)의 실제 의미 해석
+              1. 기울기(a = {regression ? regression.coefficients.a.toFixed(3) : 'a'})의 실제 의미 해석
             </span>
             <span className="text-[11px] text-indigo-600 font-normal">
               * X 1단위 증가 시 Y의 변화량
@@ -167,7 +167,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
         <div>
           <label className="block text-xs font-bold text-slate-800 mb-1 flex items-center justify-between">
             <span>
-              2. Y절편($b = {regression ? regression.coefficients.b.toFixed(3) : 'b'}$)의 실제 의미 해석
+              2. Y절편(b = {regression ? regression.coefficients.b.toFixed(3) : 'b'})의 실제 의미 해석
             </span>
             <span className="text-[11px] text-indigo-600 font-normal">
               * X가 0일 때의 Y의 시작값
@@ -185,7 +185,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
         {/* Q3: R² Interpretation */}
         <div>
           <label className="block text-xs font-bold text-slate-800 mb-1">
-            3. 결정계수($R^2 = {regression ? regression.rSquared.toFixed(4) : 'R²'}$) 및 추세선의 신뢰도 평가
+            3. 결정계수(R² = {regression ? regression.rSquared.toFixed(4) : 'R²'}) 및 추세선의 신뢰도 평가
           </label>
           <textarea
             rows={2}
@@ -225,7 +225,7 @@ export const ReflectionSection: React.FC<ReflectionSectionProps> = ({
             <span>AI 교사 피드백 및 조언</span>
           </div>
           <div className="text-xs text-indigo-950 leading-relaxed whitespace-pre-line bg-white/80 p-3 rounded-xl border border-indigo-100">
-            {aiFeedback}
+            {aiFeedback.replace(/\$\$/g, '').replace(/\$/g, '')}
           </div>
         </div>
       )}

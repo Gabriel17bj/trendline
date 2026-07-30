@@ -1,0 +1,16 @@
+{
+  "app": {
+    "name": "고교 데이터 추세선 분석기",
+    "url": "https://ais-pre-kpk5nbmblx3oualtipeewt-962247545765.asia-east1.run.app",
+    "stack": "Vite"
+  },
+  "tracks": [
+    "security",
+    "edzip"
+  ],
+  "edzipCase": "C",
+  "teacher": {
+    "dormsHandle": "gabrielmath"
+  },
+  "ownershipConfirmed": true
+}

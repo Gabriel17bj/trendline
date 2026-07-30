@@ -351,13 +351,17 @@ export default function App() {
             고교 데이터 추세선 분석기 &copy; 2026 — 학생 탐구활동 및 선형회귀 학습 보고서 생성기
           </p>
           <span className="text-slate-300 hidden sm:inline">•</span>
-          <button
-            onClick={() => setIsPrivacyModalOpen(true)}
-            className="text-indigo-600 hover:text-indigo-800 underline font-semibold inline-flex items-center space-x-1"
+          <a
+            href="/privacy"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsPrivacyModalOpen(true);
+            }}
+            className="text-indigo-600 hover:text-indigo-800 underline font-semibold inline-flex items-center space-x-1 cursor-pointer"
           >
             <ShieldCheck className="w-3.5 h-3.5" />
             <span>개인정보처리방침</span>
-          </button>
+          </a>
         </div>
         <p className="text-indigo-600 font-semibold">
           Developer: Gabriel Math (Gabriel Byeongje Jeon)

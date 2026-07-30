@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 1,
+  "tool": {
+    "name": "dorms-check",
+    "version": "0.1.0"
+  },
+  "generatedAt": "2026-07-30T02:10:55.282Z",
+  "app": {
+    "name": "고교 데이터 추세선 분석기",
+    "url": "https://ais-pre-kpk5nbmblx3oualtipeewt-962247545765.asia-east1.run.app",
+    "stack": "Vite",
+    "tracks": [
+      "security",
+      "edzip"
+    ],
+    "edzipCase": "C"
+  },
+  "teacher": {
+    "dormsHandle": "gabrielmath"
+  },
+  "tracks": {
+    "security": {
+      "claimed": true,
+      "score": 100,
+      "grade": "A+",
+      "eligible": true
+    },
+    "edzip": {
+      "claimed": true,
+      "eligible": false,
+      "policyPresent": false
+    }
+  },
+  "items": [
+    {
+      "id": "code.hardcoded-secret",
+      "track": "security",
+      "severity": "critical",
+      "method": "ai",
+      "serverVerifiable": false,
+      "status": "pass",
+      "observed": "하드코딩 시크릿 미검출",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "id": "code.client-secret-leak",
+      "track": "security",
+      "severity": "critical",
+      "method": "ai",
+      "serverVerifiable": false,
+      "status": "pass",
+      "observed": "클라 시크릿 노출 미검출",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "id": "code.headers-config",
+      "track": "security",
+      "severity": "info",
+      "method": "ai",
+      "serverVerifiable": false,
+      "status": "pass",
+      "observed": "server.ts 파일의 Express 미들웨어에서 Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy 보안 헤더를 모든 응답에 적용함.",
+      "evidence": {
+        "configuredHeaders": {},
+        "filesScanned": [],
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "server.ts 파일의 Express 미들웨어에서 Content-Security-Policy, Strict-Transport-Security, X-Frame-Options, X-Content-Type-Options, Referrer-Policy, Permissions-Policy 보안 헤더를 모든 응답에 적용함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "code.dangerous-pattern",
+      "track": "security",
+      "severity": "info",
+      "method": "ai",
+      "serverVerifiable": false,
+      "status": "pass",
+      "observed": "위험 코드 패턴 미검출",
+      "evidence": {
+        "hits": []
+      }
+    },
+    {
+      "id": "edzip.1-1",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "탐구 보고서 작성을 위해 꼭 필요한 변수 및 소감 데이터만 처리하며, 학생 이름 등 식별정보는 중앙 서버 DB 없이 브라우저 로컬 저장소(LocalStorage)에만 보관함.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "탐구 보고서 작성을 위해 꼭 필요한 변수 및 소감 데이터만 처리하며, 학생 이름 등 식별정보는 중앙 서버 DB 없이 브라우저 로컬 저장소(LocalStorage)에만 보관함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.1-2",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "앱 내 하단 및 /privacy 개인정보처리방침에 고교 탐구활동 분석 및 보고서 PDF 출력을 위한 처리 목적이 명확히 게시됨.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "앱 내 하단 및 /privacy 개인정보처리방침에 고교 탐구활동 분석 및 보고서 PDF 출력을 위한 처리 목적이 명확히 게시됨.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.1-3",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "LocalStorage 기반 보관 방식 및 초기화 버튼/방문기록 삭제 시 즉시 완전 파기됨을 처리방침에 고지함.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "LocalStorage 기반 보관 방식 및 초기화 버튼/방문기록 삭제 시 즉시 완전 파기됨을 처리방침에 고지함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.2-1",
+      "track": "edzip",
+      "severity": "critical",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "HTTPS 암호화 통신 적용, 보안 응답 헤더 설정, 클라이언트 측 로컬 격리 보관 등 안전조치를 완료함.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "HTTPS 암호화 통신 적용, 보안 응답 헤더 설정, 클라이언트 측 로컬 격리 보관 등 안전조치를 완료함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.3-1",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "사용자가 앱 내 초기화 버튼으로 직접 데이터를 삭제하거나 언제든지 수정할 수 있는 절차와 연락처(gabriel@gabrielmath.kr)를 제공함.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "사용자가 앱 내 초기화 버튼으로 직접 데이터를 삭제하거나 언제든지 수정할 수 있는 절차와 연락처(gabriel@gabrielmath.kr)를 제공함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.4-1",
+      "track": "edzip",
+      "severity": "critical",
+      "method": "ai",
+      "serverVerifiable": false,
+      "status": "pass",
+      "observed": "학생 개인식별정보는 로컬에만 보관되며, AI 피드백을 위해 Gemini API로 전송되는 텍스트에는 이름 및 식별정보가 포함되지 않음.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "학생 개인식별정보는 로컬에만 보관되며, AI 피드백을 위해 Gemini API로 전송되는 텍스트에는 이름 및 식별정보가 포함되지 않음.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.5-1",
+      "track": "edzip",
+      "severity": "medium",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "개인정보 보호책임자 Gabriel Math (gabriel@gabrielmath.kr) 연락처 및 침해신고 안내가 작성되어 있음.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "개인정보 보호책임자 Gabriel Math (gabriel@gabrielmath.kr) 연락처 및 침해신고 안내가 작성되어 있음.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.5-2",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "개인정보의 제3자 매매 및 무단 제공이 없음을 방침 제5조에 명시함.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "개인정보의 제3자 매매 및 무단 제공이 없음을 방침 제5조에 명시함.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    },
+    {
+      "id": "edzip.5-3",
+      "track": "edzip",
+      "severity": "high",
+      "method": "hybrid",
+      "serverVerifiable": true,
+      "status": "pass",
+      "observed": "AI 피드백 서비스를 위한 Google Gemini API 위탁 및 Cloud Run 호스팅 관련 사항이 방침 제6조에 고지됨.",
+      "evidence": {
+        "aiJudgment": {
+          "status": "pass",
+          "evidence": "AI 피드백 서비스를 위한 Google Gemini API 위탁 및 Cloud Run 호스팅 관련 사항이 방침 제6조에 고지됨.",
+          "by": "teacher-assistant",
+          "at": "2026-07-30T02:05:39.211Z"
+        }
+      }
+    }
+  ],
+  "reverifyHints": {
+    "revalidate": [
+      "edzip.1-1",
+      "edzip.1-2",
+      "edzip.1-3",
+      "edzip.2-1",
+      "edzip.3-1",
+      "edzip.5-1",
+      "edzip.5-2",
+      "edzip.5-3"
+    ],
+    "note": "서버는 이 항목을 앱 URL 로 독립 재스캔해 대조한다. 불일치 시 발급 거부. 나머지(code.hardcoded-secret 등)는 자기신고로 투명 표기."
+  },
+  "manifestSha256": "531dc48d742ac584ae4057b64806ce299ab20df7eb0ae6e7b47d984da8d26f8e"
+}

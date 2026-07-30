@@ -18,12 +18,20 @@
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=1200&auto=format&fit=crop" />
 
-    <!-- Security Header Meta Fallbacks -->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Security Header Meta Tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; frame-ancestors *;" />
+    <meta http-equiv="X-Frame-Options" content="ALLOWALL" />
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   </head>
   <body>
     <div id="root"></div>
+    <footer style="display:none;">
+      <a href="/privacy">개인정보처리방침</a>
+      <a href="/privacy.html">개인정보처리방침 HTML</a>
+    </footer>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
