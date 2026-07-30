@@ -1,0 +1,6 @@
+{
+  "name": "고교 데이터 추세선 분석기",
+  "description": "고등학생을 위한 추세선 회귀 분석, 데이터 입력 및 엑셀 업로드, 예측 시뮬레이션, 보고서 생성 및 PDF 저장 지원 웹앱",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
