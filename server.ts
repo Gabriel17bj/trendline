@@ -12,6 +12,19 @@ async function startServer() {
 
   app.use(express.json({ limit: '10mb' }));
 
+  // Security Headers Middleware
+  app.use((req, res, next) => {
+    res.setHeader(
+      "Content-Security-Policy",
+      "default-src 'self' 'unsafe-inline' 'unsafe-eval' https: data: blob:; frame-ancestors *;"
+    );
+    res.setHeader("X-Frame-Options", "ALLOWALL");
+    res.setHeader("X-Content-Type-Options", "nosniff");
+    res.setHeader("Referrer-Policy", "strict-origin-when-cross-origin");
+    res.setHeader("Permissions-Policy", "camera=(), microphone=(), geolocation=(), payment=()");
+    next();
+  });
+
   // API routes
   app.get("/api/health", (req, res) => {
     res.json({ status: "ok" });

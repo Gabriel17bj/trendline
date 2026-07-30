@@ -17,6 +17,8 @@ import { ReflectionSection } from './components/ReflectionSection';
 import { ReportModal } from './components/ReportModal';
 import { PresetsModal } from './components/PresetsModal';
 import { ApiKeyModal } from './components/ApiKeyModal';
+import { PrivacyModal } from './components/PrivacyModal';
+import { ShieldCheck } from 'lucide-react';
 
 const LOCAL_STORAGE_KEY = 'highschool_trendline_app_state';
 const API_KEY_STORAGE_KEY = 'gemini_user_api_key';
@@ -70,6 +72,7 @@ export default function App() {
   const [isPresetsModalOpen, setIsPresetsModalOpen] = useState<boolean>(false);
   const [isReportModalOpen, setIsReportModalOpen] = useState<boolean>(false);
   const [isApiKeyModalOpen, setIsApiKeyModalOpen] = useState<boolean>(false);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState<boolean>(false);
 
   // Auto Restore / Save Local Storage
   useEffect(() => {
@@ -320,6 +323,11 @@ export default function App() {
         />
       )}
 
+      {/* Privacy Policy Modal */}
+      {isPrivacyModalOpen && (
+        <PrivacyModal onClose={() => setIsPrivacyModalOpen(false)} />
+      )}
+
       {/* Printable / Report Modal with PDF Export */}
       {isReportModalOpen && (
         <ReportModal
@@ -336,11 +344,21 @@ export default function App() {
         />
       )}
 
-      {/* Simple Footer */}
-      <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 space-y-1">
-        <p className="font-medium text-slate-700">
-          고교 데이터 추세선 분석기 &copy; 2026 — 학생 탐구활동 및 선형회귀 학습 보고서 생성기
-        </p>
+      {/* Footer */}
+      <footer className="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 space-y-1.5">
+        <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 px-4">
+          <p className="font-medium text-slate-700">
+            고교 데이터 추세선 분석기 &copy; 2026 — 학생 탐구활동 및 선형회귀 학습 보고서 생성기
+          </p>
+          <span className="text-slate-300 hidden sm:inline">•</span>
+          <button
+            onClick={() => setIsPrivacyModalOpen(true)}
+            className="text-indigo-600 hover:text-indigo-800 underline font-semibold inline-flex items-center space-x-1"
+          >
+            <ShieldCheck className="w-3.5 h-3.5" />
+            <span>개인정보처리방침</span>
+          </button>
+        </div>
         <p className="text-indigo-600 font-semibold">
           Developer: Gabriel Math (Gabriel Byeongje Jeon)
         </p>
